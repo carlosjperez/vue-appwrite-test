@@ -5,8 +5,12 @@ export const useUserStore = defineStore('user', {
   state: () => ({ user: null }),
   actions: {
     async getUser() {
-      const user = await account.get();
-      this.user = user;
+      try {
+        const user = await account.get();
+        this.user = user;
+      } catch {
+        this.user = null;
+      }
     },
   },
 });

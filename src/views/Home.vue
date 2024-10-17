@@ -9,7 +9,8 @@ const user = computed(() => store.user)
 
 const handleSignOut = async () => {
     console.log('handle sign out clicked')
-    account.deleteSession('current')
+    await account.deleteSession('current')
+    store.user = null
     router.push('/login')
 }
 </script>
@@ -17,7 +18,7 @@ const handleSignOut = async () => {
 <template>
 
     <div  style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <h3>Welcome {{user ? (user.name) : (user.email)}} 👋!</h3>
+        <h3>Welcome {{user.name ? (user.name) : (user.email)}} 👋!</h3>
          <button @click="handleSignOut">Logout</button>
     </div>
 

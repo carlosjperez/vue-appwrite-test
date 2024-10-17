@@ -14,25 +14,29 @@ const router = createRouter({
         {
             path: "/login",
             component: () => import("../views/Login.vue"),
-            meta: {
-                noAuth: true,
-            },
         },
     ],
 });
 
 router.beforeEach(async (to, from, next) => {
-  const store = useUserStore();
+    const store = useUserStore();
+    await store.getUser();
 
+    console.log('user', store.user)
     if (to.matched.some((record) => record.meta.requiresAuth)) {
-        try {
-            await store.getUser();
-            next();
-        } catch (error) {
-            next("/login");
-        }
-    } else {
+      if (store.user) {
         next();
+        return
+      }
+
+      next('/login');
+    } else {
+      if (store.user) {
+        next('/');
+        return;
+      }
+
+      next();
     }
 });
 
