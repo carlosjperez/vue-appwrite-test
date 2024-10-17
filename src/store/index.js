@@ -1,19 +1,12 @@
-import { createStore } from "vuex";
-import { account } from "../appwrite";
+import { defineStore } from 'pinia';
+import { account } from '../appwrite';
 
-export default createStore({
-    state: {
-        user: null,
+export const useUserStore = defineStore('user', {
+  state: () => ({ user: null }),
+  actions: {
+    async getUser() {
+      const user = await account.get();
+      this.user = user;
     },
-    mutations: {
-        setUser(state, user) {
-            state.user = user;
-        },
-    },
-    actions: {
-        async getUser({ commit }) {
-            const user = await account.get();
-            commit("setUser", user);
-        },
-    },
+  },
 });

@@ -1,8 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import {account} from '../appwrite'
+import { account } from '../appwrite'
 import router from '../router'
-
 
 const email = ref('')
 const password = ref('')
@@ -65,4 +64,3 @@ button:hover {
   opacity: 0.8;
 }
 </style>
-

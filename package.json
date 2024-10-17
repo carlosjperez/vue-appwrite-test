@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "appwrite": "^16.0.2",
+    "pinia": "^2.2.4",
     "vue": "^3.4.31",
-    "vue-router": "^4.4.5",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

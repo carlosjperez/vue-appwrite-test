@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { account } from "../appwrite";
-import store from "../store";
+import { useUserStore } from "../store";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -23,9 +22,11 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+  const store = useUserStore();
+
     if (to.matched.some((record) => record.meta.requiresAuth)) {
         try {
-            await store.dispatch("getUser");
+            await store.getUser();
             next();
         } catch (error) {
             next("/login");
