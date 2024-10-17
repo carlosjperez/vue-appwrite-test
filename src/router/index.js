@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { account } from "../appwrite";
-import store from "../store";
+import { useUserStore } from "../store";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -15,24 +14,21 @@ const router = createRouter({
         {
             path: "/login",
             component: () => import("../views/Login.vue"),
-            meta: {
-                noAuth: true,
-            },
         },
     ],
 });
 
-router.beforeEach(async (to, from, next) => {
-    if (to.matched.some((record) => record.meta.requiresAuth)) {
-        try {
-            await store.dispatch("getUser");
-            next();
-        } catch (error) {
-            next("/login");
-        }
-    } else {
-        next();
-    }
+router.beforeEach((to, from, next) => {
+  const store = useUserStore();
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !store.user) {
+    next('/login');
+  } else if (!requiresAuth && store.user) {
+    next('/');
+  } else {
+    next();
+  }
 });
 
 export default router;
