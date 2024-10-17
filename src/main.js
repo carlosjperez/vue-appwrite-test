@@ -1,13 +1,25 @@
-import { createApp } from "vue";
-import "./style.css";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import './style.css';
+import App from './App.vue'
 import { createPinia } from 'pinia'
-import router from "./router";
+import { useUserStore } from './store'
+import router from './router'
 
-const pinia = createPinia();
-const app = createApp(App);
+async function initializeApp() {
+  const pinia = createPinia();
+  const app = createApp(App);
 
-app.use(pinia);
-app.use(router);
+  app.use(pinia);
 
-app.mount("#app");
+  // Load and set the user
+  const store = useUserStore();
+  try {
+    await store.getUser();
+  } catch {}
+
+  app.use(router);
+
+  app.mount("#app");
+}
+
+initializeApp()

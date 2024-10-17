@@ -18,26 +18,17 @@ const router = createRouter({
     ],
 });
 
-router.beforeEach(async (to, from, next) => {
-    const store = useUserStore();
-    await store.getUser();
+router.beforeEach((to, from, next) => {
+  const store = useUserStore();
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-    console.log('user', store.user)
-    if (to.matched.some((record) => record.meta.requiresAuth)) {
-      if (store.user) {
-        next();
-        return
-      }
-
-      next('/login');
-    } else {
-      if (store.user) {
-        next('/');
-        return;
-      }
-
-      next();
-    }
+  if (requiresAuth && !store.user) {
+    next('/login');
+  } else if (!requiresAuth && store.user) {
+    next('/');
+  } else {
+    next();
+  }
 });
 
 export default router;

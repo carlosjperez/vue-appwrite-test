@@ -1,15 +1,18 @@
 <script setup>
 import { ref } from 'vue'
 import { account } from '../appwrite'
+import { useUserStore } from '../store'
 import router from '../router'
 
 const email = ref('')
 const password = ref('')
+const store = useUserStore()
 
 const handleLogin = async () => {
     console.log(email.value, password.value)
     try {
       const session = await account.createEmailPasswordSession(email.value, password.value)
+      store.user = await account.get()
       router.push('/')
   } catch (error) {
     console.error('Login failed:', error.message)
