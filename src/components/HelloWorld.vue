@@ -17,7 +17,7 @@ const count = ref(0)
       <img src="../assets/vue.svg" class="logo vue" alt="Vue logo" style="height: 75px;" />
     </a>
   </div>
-  <h1>{{ msg }}</h1>
+  <h1 style="text-align: center;">{{ msg }}</h1>
 
 </template>
 
