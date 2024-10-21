@@ -5,7 +5,7 @@ This template helps you get setup quickly with Appwrite + Vue JS. Template inclu
 -   Page routing with `vue-router`.
 -   User login
 -   Protected pages with Navigation Gaurds
--   State management with `Pina`
+-   State management with `Pinia`
 -   Logout functionality
 
 <img src="./demo.gif"/>
