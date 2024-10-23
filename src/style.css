@@ -68,8 +68,8 @@ button:focus-visible {
 
 #logout-btn{
   position: fixed;
-  right: 1em;
-  bottom: 1em;
+  right: 2em;
+  bottom: 2em;
 }
 
 .login-form {

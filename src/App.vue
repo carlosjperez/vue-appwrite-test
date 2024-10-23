@@ -4,6 +4,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
 
-  <HelloWorld msg="Appwrite 🤝 Vue" />
+  <HelloWorld msg="Vue.js 🤝 Appwrite" />
   <router-view/>
 </template>

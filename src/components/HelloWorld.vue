@@ -10,11 +10,12 @@ const count = ref(0)
 
 <template>
     <div style="display: flex; justify-content: center; gap: 2em;">
-    <a href="https://appwrite.io" target="_blank">
-      <img src="../assets/appwrite.svg" class="logo" alt="Appwrite logo" style="height: 75px;" />
-    </a>
+   
     <a href="https://vuejs.org/" target="_blank">
       <img src="../assets/vue.svg" class="logo vue" alt="Vue logo" style="height: 75px;" />
+    </a>
+    <a href="https://appwrite.io" target="_blank">
+      <img src="../assets/appwrite.svg" class="logo" alt="Appwrite logo" style="height: 75px;" />
     </a>
   </div>
   <h1 style="text-align: center;">{{ msg }}</h1>
